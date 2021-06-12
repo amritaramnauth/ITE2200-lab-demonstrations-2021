@@ -1,25 +1,46 @@
 package ug.ite2200.chatapp.entities;
 
+import java.util.UUID;
+
 public class User {
 
-    private int id;
+    private UUID id;
     private String email;
     private String contact_number;
     private String address;
-    private String name;
+    private String username;
 
-    public User(String email, String contact_number, String address, String name) {
+    private int age;
+    private String gender;
+    private String hobbies;
+
+    private String characteristics;
+
+    private UserType user_type;
+
+    public User(String email, String contact_number, String address, String username, int age, String gender, String hobbies) {
         this.email = email;
         this.contact_number = contact_number;
         this.address = address;
-        this.name = name;
+        this.username = username;
+        this.age = age;
+        this.gender = gender;
+        this.hobbies = hobbies;
+        this.user_type = UserType.PERSON;
+    }
+    public User(String email, String contact_number, String address, String username, String characteristics) {
+        this.email = email;
+        this.contact_number = contact_number;
+        this.address = address;
+        this.username = username;
+        this.user_type = UserType.BUSINESS;
     }
 
-    public int getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -47,11 +68,67 @@ public class User {
         this.address = address;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getHobbies() {
+        return hobbies;
+    }
+
+    public void setHobbies(String hobbies) {
+        this.hobbies = hobbies;
+    }
+
+    public String getCharacteristics() {
+        return characteristics;
+    }
+
+    public void setCharacteristics(String characteristics) {
+        this.characteristics = characteristics;
+    }
+
+    public UserType getUser_type() {
+        return user_type;
+    }
+
+    public void setUser_type(UserType user_type) {
+        this.user_type = user_type;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", contact_number='" + contact_number + '\'' +
+                ", address='" + address + '\'' +
+                ", username='" + username + '\'' +
+                ", age=" + age +
+                ", gender='" + gender + '\'' +
+                ", hobbies='" + hobbies + '\'' +
+                ", characteristics='" + characteristics + '\'' +
+                ", user_type=" + user_type +
+                '}';
     }
 }

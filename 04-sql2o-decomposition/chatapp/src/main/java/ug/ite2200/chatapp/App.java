@@ -4,7 +4,7 @@ public class App {
 
     public static void main(String[] args) {
 
-        var chatapp = new ChatApp();
-        chatapp.run();
+        var chat = new Chat();
+        chat.run();
     }
 }
