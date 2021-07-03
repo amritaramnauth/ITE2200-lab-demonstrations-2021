@@ -10,7 +10,8 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
-    "vuetify": "^2.4.0"
+    "vuetify": "^2.4.0",
+    "generate-avatar": "^1.4.10"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

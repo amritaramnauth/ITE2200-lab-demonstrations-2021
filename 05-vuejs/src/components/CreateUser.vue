@@ -71,7 +71,7 @@
       ></v-data-table>
     </v-col>
 
-    <v-col cols="3" sm="6" md="4" lg="3"> <UserCard /> </v-col>
+    <v-col cols="2" sm="4" md="4" lg="2"> <UserCard /> </v-col>
   </v-row>
 </template>
 
@@ -98,25 +98,41 @@ export default {
         firstName: "Alan",
         lastName: "Turing",
         address: "123 Stabroek, Georgetown",
-        dateOfBirth: new Date(1990, 11, 17).toLocaleDateString(),
+        dateOfBirth: new Date(
+          Date.now() - new Date().getTimezoneOffset() * 60000
+        )
+          .toISOString()
+          .substr(0, 10),
       },
       {
         firstName: "Jane",
         lastName: "Doe",
         address: "2A Turkeyen, Greater Georgetown",
-        dateOfBirth: new Date(2001, 12, 11).toLocaleDateString(),
+        dateOfBirth: new Date(
+          Date.now() - new Date().getTimezoneOffset() * 60000
+        )
+          .toISOString()
+          .substr(0, 10),
       },
       {
         firstName: "Scrimply",
         lastName: "Pibbles",
         address: "221 East Street, South Cummingsburg",
-        dateOfBirth: new Date(1972, 11, 17).toLocaleDateString(),
+        dateOfBirth: new Date(
+          Date.now() - new Date().getTimezoneOffset() * 60000
+        )
+          .toISOString()
+          .substr(0, 10),
       },
       {
         firstName: "Freddie",
         lastName: "Doe",
         address: "9A New Market Street, Georgetown",
-        dateOfBirth: new Date(2015, 11, 17).toLocaleDateString(),
+        dateOfBirth: new Date(
+          Date.now() - new Date().getTimezoneOffset() * 60000
+        )
+          .toISOString()
+          .substr(0, 10),
       },
     ],
     dataTableHeaders: [
