@@ -71,7 +71,10 @@
       ></v-data-table>
     </v-col>
 
-    <v-col cols="2" sm="4" md="4" lg="2"> <UserCard /> </v-col>
+    <v-col cols="2" sm="4" md="4" lg="2"
+      v-for="(user, index) in users"
+      :key="index"
+    > <UserCard :user="user" :index="index" @remove-user="removeUser"  @update-user="updateUser"/> </v-col>
   </v-row>
 </template>
 
@@ -98,41 +101,25 @@ export default {
         firstName: "Alan",
         lastName: "Turing",
         address: "123 Stabroek, Georgetown",
-        dateOfBirth: new Date(
-          Date.now() - new Date().getTimezoneOffset() * 60000
-        )
-          .toISOString()
-          .substr(0, 10),
+        dateOfBirth: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
       },
       {
         firstName: "Jane",
         lastName: "Doe",
         address: "2A Turkeyen, Greater Georgetown",
-        dateOfBirth: new Date(
-          Date.now() - new Date().getTimezoneOffset() * 60000
-        )
-          .toISOString()
-          .substr(0, 10),
+        dateOfBirth: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
       },
       {
         firstName: "Scrimply",
         lastName: "Pibbles",
         address: "221 East Street, South Cummingsburg",
-        dateOfBirth: new Date(
-          Date.now() - new Date().getTimezoneOffset() * 60000
-        )
-          .toISOString()
-          .substr(0, 10),
+        dateOfBirth: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
       },
       {
         firstName: "Freddie",
         lastName: "Doe",
         address: "9A New Market Street, Georgetown",
-        dateOfBirth: new Date(
-          Date.now() - new Date().getTimezoneOffset() * 60000
-        )
-          .toISOString()
-          .substr(0, 10),
+        dateOfBirth: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
       },
     ],
     dataTableHeaders: [
@@ -153,6 +140,17 @@ export default {
       const user = { ...this.userForm };
       this.users.push(user);
     },
+
+    removeUser($index) {
+      this.users.splice($index, 1);
+    },
+
+    updateUser($event) {
+      var index = $event.index;
+      var user = $event.user;
+
+      this.users.splice(index, 1, user);
+    }
   },
 
   computed: {
