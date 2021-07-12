@@ -1,0 +1,33 @@
+
+{
+  "users": [
+    {
+      "id": 1,
+      "firstName": "Alan",
+      "lastName": "Turing",
+      "address": "321 Stabroek, Georgetown",
+      "dateOfBirth": "1994-07-11"
+    },
+    {
+      "id": 2,
+      "firstName": "Jane",
+      "lastName": "Doe",
+      "address": "267 Forshaw Street",
+      "dateOfBirth": "1976-07-06"
+    },
+    {
+      "id": 3,
+      "firstName": "Scrimply",
+      "lastName": "Pibbles",
+      "address": "221 East Street, South Cummingsburg",
+      "dateOfBirth": "2001-07-06"
+    },
+    {
+      "id": 4,
+      "firstName": "Freddie",
+      "lastName": "Doe",
+      "address": "A New Market Street, Georgetown",
+      "dateOfBirth": "2018-07-06"
+    }
+  ]
+}
