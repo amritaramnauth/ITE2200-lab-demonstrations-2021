@@ -71,15 +71,20 @@
       ></v-data-table>
     </v-col>
 
-    <v-col cols="2" sm="4" md="4" lg="2"
-      v-for="(user, index) in users"
-      :key="index"
-    > <UserCard :user="user" :index="index" @remove-user="removeUser"  @update-user="updateUser"/> </v-col>
+    <v-col cols="2" sm="4" md="4" lg="2" v-for="user in users" :key="user.id">
+      <UserCard
+        :user="user"
+        :index="user.id"
+        @remove-user="removeUser"
+        @update-user="updateUser"
+      />
+    </v-col>
   </v-row>
 </template>
 
 <script>
 import UserCard from "./UserCard";
+import axios from "axios";
 
 export default {
   components: {
@@ -96,32 +101,7 @@ export default {
       address: "",
       dateOfBirth: "",
     },
-    users: [
-      {
-        firstName: "Alan",
-        lastName: "Turing",
-        address: "123 Stabroek, Georgetown",
-        dateOfBirth: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
-      },
-      {
-        firstName: "Jane",
-        lastName: "Doe",
-        address: "2A Turkeyen, Greater Georgetown",
-        dateOfBirth: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
-      },
-      {
-        firstName: "Scrimply",
-        lastName: "Pibbles",
-        address: "221 East Street, South Cummingsburg",
-        dateOfBirth: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
-      },
-      {
-        firstName: "Freddie",
-        lastName: "Doe",
-        address: "9A New Market Street, Georgetown",
-        dateOfBirth: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
-      },
-    ],
+    users: [],
     dataTableHeaders: [
       {
         text: "First name",
@@ -135,22 +115,35 @@ export default {
     ],
   }),
 
+  mounted() {
+    axios.get("http://localhost:3000/users").then((response) => {
+      this.users = response.data;
+    });
+  },
+
   methods: {
     create() {
       const user = { ...this.userForm };
-      this.users.push(user);
+      axios.post("http://localhost:3000/users", user).then((response) => {
+        // re-fetch everything from GET /users
+        this.users.push(response.data);
+      });
     },
 
-    removeUser($index) {
-      this.users.splice($index, 1);
+    removeUser(id) {
+      axios.delete(`http://localhost:3000/users/${id}`).then(() => {
+        this.users = this.users.filter((user) => user.id != id)
+      })
     },
 
     updateUser($event) {
-      var index = $event.index;
+      var id = $event.index;
       var user = $event.user;
 
-      this.users.splice(index, 1, user);
-    }
+      axios.put(`http://localhost:3000/users/${id}`, user).then((response) => {
+        this.users = this.users.map((user) => user.id != id ? user : response.data)
+      })
+    },
   },
 
   computed: {
